@@ -1,0 +1,10 @@
+   <mat-toolbar color="primary">
+      <mat-icon>check_circle</mat-icon>
+      <span style="margin-left:8px; font-weight:bold">Task Manager</span>
+      <span class="spacer"></span>
+      @if (authService.isLoggedIn$ | async) {
+        <button mat-button (click)="logout()">
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+      }
+    </mat-toolbar>

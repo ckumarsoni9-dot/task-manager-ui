@@ -1,0 +1,62 @@
+<div class="auth-container">
+      <mat-card class="auth-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon color="primary">person_add</mat-icon>
+            Register
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="fullName"
+                     placeholder="Aapka naam">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email"
+                     type="email" placeholder="aap@email.com">
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password"
+                     [type]="hidePassword ? 'password' : 'text'">
+              <button mat-icon-button matSuffix type="button"
+                      (click)="hidePassword = !hidePassword">
+                <mat-icon>
+                  {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </button>
+            </mat-form-field>
+
+            @if (errorMsg) {
+              <p class="error-msg">{{ errorMsg }}</p>
+            }
+
+            <button mat-raised-button color="primary"
+                    class="full-width" type="submit"
+                    [disabled]="registerForm.invalid || loading">
+              @if (loading) {
+                <mat-spinner diameter="20"></mat-spinner>
+              } @else {
+                Register
+              }
+            </button>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <p>Pehle se account hai?
+            <a routerLink="/login">Login karo</a>
+          </p>
+        </mat-card-actions>
+      </mat-card>
+    </div>

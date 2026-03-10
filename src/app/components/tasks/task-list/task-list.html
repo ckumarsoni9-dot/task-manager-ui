@@ -1,0 +1,66 @@
+<div class="task-grid">
+      @for (task of tasks; track task.id) {
+        <mat-card class="task-card"
+                  [class.completed]="task.status === 'Completed'">
+          <mat-card-header>
+            <mat-card-title>{{ task.title }}</mat-card-title>
+            <span class="spacer"></span>
+
+            <!-- Priority Badge -->
+            <mat-chip [class]="'priority-' + task.priority.toLowerCase()">
+              {{ getPriorityIcon(task.priority) }} {{ task.priority }}
+            </mat-chip>
+
+            <!-- Menu -->
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item
+                      (click)="updateStatus(task.id, 'Pending')">
+                <mat-icon>schedule</mat-icon> Pending
+              </button>
+              <button mat-menu-item
+                      (click)="updateStatus(task.id, 'InProgress')">
+                <mat-icon>play_arrow</mat-icon> In Progress
+              </button>
+              <button mat-menu-item
+                      (click)="updateStatus(task.id, 'Completed')">
+                <mat-icon>check_circle</mat-icon> Completed
+              </button>
+              <button mat-menu-item
+                      (click)="deleteTask(task.id)"
+                      class="delete-btn">
+                <mat-icon color="warn">delete</mat-icon> Delete
+              </button>
+            </mat-menu>
+          </mat-card-header>
+
+          <mat-card-content>
+            @if (task.description) {
+              <p class="description">{{ task.description }}</p>
+            }
+            @if (task.dueDate) {
+              <p class="due-date">
+                <mat-icon>calendar_today</mat-icon>
+                Due: {{ task.dueDate | date:'dd MMM yyyy' }}
+              </p>
+            }
+          </mat-card-content>
+
+          <mat-card-footer>
+            <div class="status-bar"
+                 [class]="'status-' + task.status.toLowerCase()">
+              {{ getStatusIcon(task.status) }} {{ task.status }}
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      }
+
+      @if (tasks.length === 0) {
+        <div class="empty-state">
+          <mat-icon>inbox</mat-icon>
+          <p>Koi task nahi hai!</p>
+        </div>
+      }
+    </div>

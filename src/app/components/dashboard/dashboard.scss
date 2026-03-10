@@ -1,0 +1,46 @@
+.dashboard-container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      display: flex !important;
+      align-items: center;
+      gap: 16px;
+      padding: 20px !important;
+      border-radius: 12px !important;
+    }
+    .stat-card mat-icon {
+      font-size: 40px;
+      height: 40px;
+      width: 40px;
+    }
+    .stat-card h3 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .stat-card p { margin: 0; font-size: 14px; color: #666; }
+    .pending mat-icon { color: #e65100; }
+    .inprogress mat-icon { color: #1565c0; }
+    .completed mat-icon { color: #2e7d32; }
+    .total mat-icon { color: #6a1b9a; }
+    .add-task-panel {
+      margin-bottom: 24px !important;
+      border-radius: 12px !important;
+    }
+    .loading {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
